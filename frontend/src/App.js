@@ -1,10 +1,13 @@
 import './App.css'
+import { Footer, MainPage, Navbar } from './components'
 
 function App() {
   return (
-    <div>
-      <h1>Hello</h1>
-    </div>
+    <>
+      <Navbar />
+      <MainPage />
+      <Footer />
+    </>
   )
 }
 
