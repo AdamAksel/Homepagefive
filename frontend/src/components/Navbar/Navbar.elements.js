@@ -11,11 +11,20 @@ export const NavWrapper = styled.div`
   justify-content: space-around;
   align-items: center;
   background-color: #404040;
-  width: 1100px;
+  width: 90vw;
   height: 3rem;
+
+  @media (max-width: 600px) {
+    display: none;
+  }
 `
 
 export const NavText = styled.div`
   font-size: 1.5rem;
   color: lightgray;
+
+  &:hover {
+    color: deepskyblue;
+    cursor: pointer;
+  }
 `

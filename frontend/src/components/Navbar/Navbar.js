@@ -6,8 +6,10 @@ const Navbar = () => {
     <NavContainer>
       <NavWrapper>
         <NavText>FAQ</NavText>
+        <NavText>Projects</NavText>
         <NavText>Contact</NavText>
         <NavText>Blog</NavText>
+        <NavText>Movies&Music</NavText>
       </NavWrapper>
     </NavContainer>
   )
