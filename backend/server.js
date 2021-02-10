@@ -1,6 +1,10 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import connectDB from './config/db.js'
+import blogRoutes from './routes/blogRoutes.js'
+import FAQRoutes from './routes/FAQRoutes.js'
+import reviewRoutes from './routes/reviewRoutes.js'
+import projectRoutes from './routes/projectRoutes.js'
 
 dotenv.config()
 

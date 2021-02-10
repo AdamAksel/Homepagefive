@@ -9,7 +9,10 @@ const blogSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  date: Date.now,
+  date: {
+    type: Date,
+    default: Date.now,
+  },
 })
 
 const Blog = mongoose.model('Blog', blogSchema)

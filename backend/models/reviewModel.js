@@ -10,7 +10,10 @@ const reviewSchema = mongoose.Schema({
     required: true,
   },
 
-  date: Date.now,
+  date: {
+    type: Date,
+    default: Date.now,
+  },
 })
 
 const Review = mongoose.model('Review', reviewSchema)
