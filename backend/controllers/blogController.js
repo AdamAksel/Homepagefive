@@ -22,4 +22,29 @@ const getBlogPostById = async (req, res) => {
   }
 }
 
-export { getBlogPosts, getBlogPostById }
+//@desc     Register new user
+//@route    POST /api/users
+//@access   Public
+const createBlogPost = async (req, res) => {
+  const { title, body, date } = req.body
+
+  const blog = await Blog.create({
+    title,
+    body,
+    date,
+  })
+
+  if (blog) {
+    res.status(201).json({
+      _id: blog._id,
+      title: blog.title,
+      body: blog.body,
+      date: blog.date,
+    })
+  } else {
+    res.status(400)
+    throw new Error('Invalid Blog Data!')
+  }
+}
+
+export { getBlogPosts, getBlogPostById, createBlogPost }

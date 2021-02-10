@@ -1,5 +1,9 @@
 import express from 'express'
-import { getBlogPostById, getBlogPosts } from '../controllers/blogController.js'
+import {
+  getBlogPostById,
+  getBlogPosts,
+  createBlogPost,
+} from '../controllers/blogController.js'
 const router = express.Router()
 
 //@desc     Fetch all blog posts
@@ -11,5 +15,7 @@ router.route('/').get(getBlogPosts)
 //@route    GET api/blog/:id
 //@access   Public
 router.route('/:id').get(getBlogPostById)
+
+router.route('/').post(createBlogPost)
 
 export default router
