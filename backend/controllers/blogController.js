@@ -47,4 +47,38 @@ const createBlogPost = async (req, res) => {
   }
 }
 
-export { getBlogPosts, getBlogPostById, createBlogPost }
+const updateBlogPost = async (req, res) => {
+  const blogPost = await Blog.findById(req.params.id)
+  if (blogPost) {
+    blogPost.title = req.body.title || blogPost.title
+    blogPost.body = req.body.body || blogPost.body
+
+    const updatedBlogPost = await blogPost.save()
+
+    res.json({
+      title: updatedBlogPost.title,
+      body: updatedBlogPost.body,
+    })
+  } else {
+    res.status(404)
+    throw new Error('user not found!')
+  }
+}
+
+const deleteBlogPost = async (req, res) => {
+  const blogPost = await Blog.findById(req.params.id)
+  if (blogPost) {
+    blogPost.remove().then(() => res.json({ success: true }))
+  } else {
+    res.status(404)
+    throw new Error('user not found!')
+  }
+}
+
+export {
+  getBlogPosts,
+  getBlogPostById,
+  createBlogPost,
+  updateBlogPost,
+  deleteBlogPost,
+}

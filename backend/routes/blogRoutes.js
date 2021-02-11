@@ -3,6 +3,8 @@ import {
   getBlogPostById,
   getBlogPosts,
   createBlogPost,
+  updateBlogPost,
+  deleteBlogPost,
 } from '../controllers/blogController.js'
 const router = express.Router()
 
@@ -17,5 +19,9 @@ router.route('/').get(getBlogPosts)
 router.route('/:id').get(getBlogPostById)
 
 router.route('/').post(createBlogPost)
+
+router.route('/:id').put(updateBlogPost)
+
+router.route('/:id').delete(deleteBlogPost)
 
 export default router
