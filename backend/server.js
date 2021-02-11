@@ -3,7 +3,6 @@ import dotenv from 'dotenv'
 import connectDB from './config/db.js'
 import blogRoutes from './routes/blogRoutes.js'
 import FAQRoutes from './routes/FAQRoutes.js'
-import reviewRoutes from './routes/reviewRoutes.js'
 import projectRoutes from './routes/projectRoutes.js'
 
 dotenv.config()
@@ -20,7 +19,6 @@ app.get('/', (req, res) => {
 
 app.use('/api/blog', blogRoutes)
 app.use('/api/FAQ', FAQRoutes)
-app.use('/api/reviews', reviewRoutes)
 app.use('/api/projects', projectRoutes)
 
 const PORT = process.env.PORT || 5000

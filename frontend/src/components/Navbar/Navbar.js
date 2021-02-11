@@ -27,7 +27,6 @@ const Navbar = () => {
           <NavText>Projects</NavText>
           <NavText>Contact</NavText>
           <NavText>Blog</NavText>
-          <NavText>Movies&Music</NavText>
         </NavWrapper>
       </NavContainer>
       {navOpen === 0 ? (
@@ -45,7 +44,6 @@ const Navbar = () => {
               <NavText>Projects</NavText>
               <NavText>Contact</NavText>
               <NavText>Blog</NavText>
-              <NavText>Movies&Music</NavText>
             </NavHamContainer>
           </NavHamWrapper>{' '}
         </>
