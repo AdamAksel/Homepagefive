@@ -1,7 +1,11 @@
 import React from 'react'
 
 const FAQ = () => {
-  return <div></div>
+  return (
+    <>
+      <div>Hello from FAQ</div>
+    </>
+  )
 }
 
 export default FAQ

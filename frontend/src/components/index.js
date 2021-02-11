@@ -1,3 +1,8 @@
 export { default as Footer } from './Footer/Footer'
 export { default as MainPage } from './MainPage/MainPage'
 export { default as Navbar } from './Navbar/Navbar'
+export { default as Login } from './Login/Login'
+export { default as Contact } from './Contact/Contact'
+export { default as FAQ } from './FAQ/FAQ'
+export { default as Blog } from './Blog/Blog'
+export { default as Projects } from './Projects/Projects'

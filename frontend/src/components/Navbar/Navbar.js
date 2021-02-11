@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+
 import {
   NavWrapper,
   NavText,
@@ -23,10 +25,18 @@ const Navbar = () => {
     <>
       <NavContainer>
         <NavWrapper>
-          <NavText>FAQ</NavText>
-          <NavText>Projects</NavText>
-          <NavText>Contact</NavText>
-          <NavText>Blog</NavText>
+          <NavText>
+            <Link to='/FAQ'>FAQ</Link>
+          </NavText>
+          <NavText>
+            <Link to='/projects'>Projects</Link>
+          </NavText>
+          <NavText>
+            <Link to='/contact'>Contact</Link>
+          </NavText>
+          <NavText>
+            <Link to='/blog'>Blog</Link>
+          </NavText>
         </NavWrapper>
       </NavContainer>
       {navOpen === 0 ? (
@@ -40,10 +50,10 @@ const Navbar = () => {
           </NavHamburger>{' '}
           <NavHamWrapper>
             <NavHamContainer>
-              <NavText>FAQ</NavText>
-              <NavText>Projects</NavText>
-              <NavText>Contact</NavText>
-              <NavText>Blog</NavText>
+              <NavText to='/FAQ'>FAQ</NavText>
+              <NavText to='/Projects'>Projects</NavText>
+              <NavText to='/Contact'>Contact</NavText>
+              <NavText to='/Blog'>Blog</NavText>
             </NavHamContainer>
           </NavHamWrapper>{' '}
         </>
