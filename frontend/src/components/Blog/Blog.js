@@ -1,10 +1,13 @@
 import React from 'react'
+import { BlogWrapper, BlogArea } from './Blog.elements'
 
 const Blog = () => {
   return (
-    <>
-      <div>Hello from Blog</div>
-    </>
+    <BlogWrapper>
+      <BlogArea>
+        <div>Hello from Blog</div>
+      </BlogArea>
+    </BlogWrapper>
   )
 }
 

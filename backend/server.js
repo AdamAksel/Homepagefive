@@ -4,6 +4,7 @@ import connectDB from './config/db.js'
 import blogRoutes from './routes/blogRoutes.js'
 import FAQRoutes from './routes/FAQRoutes.js'
 import projectRoutes from './routes/projectRoutes.js'
+import bodyParser from 'body-parser'
 
 dotenv.config()
 
@@ -11,7 +12,7 @@ const app = express()
 
 connectDB()
 
-app.use(express.json())
+app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
   res.send('API is running')

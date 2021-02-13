@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import img from './img/SamolemBackground.jpg'
+import img from '../img/SamolemBackground.jpg'
 
 export const MainWrapper = styled.div`
   display: flex;

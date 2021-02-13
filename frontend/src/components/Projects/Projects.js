@@ -1,10 +1,13 @@
 import React from 'react'
+import { ProjectsWrapper, ProjectsArea } from './Projects.elements'
 
 const Projects = () => {
   return (
-    <>
-      <div>Hello from Projects</div>
-    </>
+    <ProjectsWrapper>
+      <ProjectsArea>
+        <div>Hello from Projects</div>
+      </ProjectsArea>
+    </ProjectsWrapper>
   )
 }
 

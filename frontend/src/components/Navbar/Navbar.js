@@ -25,35 +25,43 @@ const Navbar = () => {
     <>
       <NavContainer>
         <NavWrapper>
-          <NavText>
-            <Link to='/FAQ'>FAQ</Link>
-          </NavText>
-          <NavText>
-            <Link to='/projects'>Projects</Link>
-          </NavText>
-          <NavText>
-            <Link to='/contact'>Contact</Link>
-          </NavText>
-          <NavText>
-            <Link to='/blog'>Blog</Link>
-          </NavText>
+          <Link to='/FAQ' style={{ textDecoration: 'none' }}>
+            <NavText>FAQ</NavText>
+          </Link>
+          <Link to='/projects' style={{ textDecoration: 'none' }}>
+            <NavText>Projects</NavText>
+          </Link>
+          <Link to='/contact' style={{ textDecoration: 'none' }}>
+            <NavText>Contact</NavText>
+          </Link>
+          <Link to='/blog' style={{ textDecoration: 'none' }}>
+            <NavText>Blog</NavText>
+          </Link>
         </NavWrapper>
       </NavContainer>
       {navOpen === 0 ? (
         <NavHamburger onClick={navOpenFunction}>
-          <i class='fas fa-hamburger'></i>
+          <i className='fas fa-hamburger'></i>
         </NavHamburger>
       ) : (
         <>
           <NavHamburger onClick={navOpenFunction}>
-            <i class='fas fa-hamburger'></i>
+            <i className='fas fa-hamburger'></i>
           </NavHamburger>{' '}
           <NavHamWrapper>
             <NavHamContainer>
-              <NavText to='/FAQ'>FAQ</NavText>
-              <NavText to='/Projects'>Projects</NavText>
-              <NavText to='/Contact'>Contact</NavText>
-              <NavText to='/Blog'>Blog</NavText>
+              <Link to='/FAQ' style={{ textDecoration: 'none' }}>
+                <NavText>FAQ</NavText>
+              </Link>
+              <Link to='/projects' style={{ textDecoration: 'none' }}>
+                <NavText>Projects</NavText>
+              </Link>
+              <Link to='/contact' style={{ textDecoration: 'none' }}>
+                <NavText>Contact</NavText>
+              </Link>
+              <Link to='/blog' style={{ textDecoration: 'none' }}>
+                <NavText>Blog</NavText>
+              </Link>
             </NavHamContainer>
           </NavHamWrapper>{' '}
         </>

@@ -1,10 +1,13 @@
 import React from 'react'
+import { ContactWrapper, ContactArea } from './Contact.elements'
 
 const Contact = () => {
   return (
-    <>
-      <div>Hello from Contact</div>
-    </>
+    <ContactWrapper>
+      <ContactArea>
+        <div>Hello from Contact</div>
+      </ContactArea>
+    </ContactWrapper>
   )
 }
 
