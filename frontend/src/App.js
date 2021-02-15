@@ -11,20 +11,27 @@ import {
   Login,
   Projects,
 } from './components'
+import styled from 'styled-components'
+import { GlobalStyle } from './globalstyles'
+
+const StyledApp = styled.div``
 
 function App() {
   return (
     <Router>
-      <Navbar />
-      <main>
-        <Route path='/' component={MainPage} exact />
-        <Route path='/FAQ' component={FAQ} />
-        <Route path='/login' component={Login} />
-        <Route path='/blog' component={Blog} />
-        <Route path='/projects' component={Projects} />
-        <Route path='/contact' component={Contact} />
-      </main>
-      <Footer />
+      <StyledApp>
+        <GlobalStyle />
+        <Navbar />
+        <main>
+          <Route path='/' component={MainPage} exact />
+          <Route path='/FAQ' component={FAQ} />
+          <Route path='/login' component={Login} />
+          <Route path='/blog' component={Blog} />
+          <Route path='/projects' component={Projects} />
+          <Route path='/contact' component={Contact} />
+        </main>
+        <Footer />
+      </StyledApp>
     </Router>
   )
 }

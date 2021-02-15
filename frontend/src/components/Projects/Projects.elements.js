@@ -14,7 +14,8 @@ export const ProjectsArea = styled.div`
   align-content: space-around;
   flex-direction: column;
   min-height: 85vh;
-  min-width: 90vw;
+  min-width: 100vw;
   background-color: whitesmoke;
   overflow: scroll;
+  padding: 50px;
 `

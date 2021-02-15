@@ -1,9 +1,13 @@
 import styled from 'styled-components'
 
 export const NavContainer = styled.div`
+  //position: absolute;
+  //top: 0;
+  //left: 0;
   display: flex;
-  justify-content: center;
-  top: 0;
+  align-items: flex-start;
+  justify-items: flex-start;
+  width: 100vw;
 `
 
 export const NavWrapper = styled.div`
@@ -11,7 +15,7 @@ export const NavWrapper = styled.div`
   justify-content: space-around;
   align-items: center;
   background-color: #404040;
-  width: 90vw;
+  width: 100vw;
   height: 3rem;
 
   @media (max-width: 600px) {

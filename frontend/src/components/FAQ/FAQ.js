@@ -10,8 +10,6 @@ const FAQ = () => {
       .get('/api/FAQ')
       .then(res => {
         setFAQ(res.data)
-        console.log(res)
-        return res.json()
       })
       .catch(err => {
         console.log(err)
@@ -22,10 +20,11 @@ const FAQ = () => {
     <FAQWrapper>
       <FAQArea>
         {FAQ.map(qAndA => (
-          <ul>
-            <li key={qAndA._id}>
+          <ul key={qAndA._id}>
+            <li>
               Q: {qAndA.question} <br />
-              <br /> A: {qAndA.answer}
+              A: {qAndA.answer} <br />
+              <br />
             </li>
           </ul>
         ))}
