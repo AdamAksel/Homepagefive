@@ -7,10 +7,10 @@ export const LoginWrapper = styled.div`
   min-height: 85vh;
 `
 
-export const LoginBackground = styled.div`
+export const LoginArea = styled.div`
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   width: 100vw;
   min-height: 85vh;
 `
