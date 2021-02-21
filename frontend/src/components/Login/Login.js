@@ -23,6 +23,10 @@ const Login = () => {
   var [FAQ, setFAQ] = useState([])
   var [FAQQuestion, setFAQQuestion] = useState()
   var [FAQAnswer, setFAQAnswer] = useState()
+  var [postModal, setPostModal] = useState(false)
+  var [delModal, setDelModal] = useState(false)
+  var [putModal, setPutModal] = useState(false)
+  var [FAQID, setFAQID] = useState()
 
   useEffect(() => {
     axios
@@ -62,6 +66,18 @@ const Login = () => {
       .then()
       .catch(err => console.log(err))
   }
+  function DelFAQ(e) {
+    e.preventDefault()
+
+    axios
+      .delete(`/api/FAQ/${FAQID}`)
+      .then()
+      .catch(err => console.log(err))
+  }
+
+  function delFAQIDHandler(e) {
+    setFAQID(e.target.value)
+  }
 
   const submitHandler = e => {
     e.preventDefault()
@@ -92,7 +108,21 @@ const Login = () => {
     }
   }
 
-  console.log(access)
+  const postScreenHandler = () => {
+    setPostModal(true)
+    setPutModal(false)
+    setDelModal(false)
+  }
+  const putScreenHandler = () => {
+    setPostModal(false)
+    setPutModal(true)
+    setDelModal(false)
+  }
+  const delScreenHandler = () => {
+    setPostModal(false)
+    setPutModal(false)
+    setDelModal(true)
+  }
 
   if (!modal) {
     return (
@@ -153,16 +183,29 @@ const Login = () => {
             ))}
           </ModalLeft>
           <ModalRight>
-            <div>
-              <h4>Post</h4>
-              <TextArea onChange={postFAQQuestionHandler}></TextArea>
-              <TextArea onChange={postFAQAnswerHandler}></TextArea>
-              <button type='submit' value='submit' onClick={PostFAQ}>
-                Post
-              </button>
-            </div>
+            {postModal ? (
+              <div>
+                <h4>Post</h4>
+                <TextArea onChange={postFAQQuestionHandler}></TextArea>
+                <TextArea onChange={postFAQAnswerHandler}></TextArea>
+                <button type='submit' value='submit' onClick={PostFAQ}>
+                  Post
+                </button>
+              </div>
+            ) : delModal ? (
+              <div>
+                <h4>Del</h4>
+                <TextArea onChange={delFAQIDHandler}></TextArea>
+                <button type='submit' value='submit' onClick={DelFAQ}>
+                  Delete
+                </button>
+              </div>
+            ) : null}
           </ModalRight>
         </ModalArea>
+        <button onClick={postScreenHandler}>Post</button>
+        <button onClick={putScreenHandler}>Put</button>
+        <button onClick={delScreenHandler}>Del</button>
       </ModalBackground>
     )
   }
