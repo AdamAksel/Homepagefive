@@ -1,11 +1,38 @@
-import React from 'react'
-import { ProjectsWrapper, ProjectsArea } from './Projects.elements'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { ProjectsWrapper, ProjectsArea, ProjectsCard, ProjectsTitle, ProjectsBody, ProjectsLink } from './Projects.elements'
 
 const Projects = () => {
+const [projects, setProjects] = useState([])
+
+
+useEffect(() => {
+  axios
+    .get('/api/projects')
+    .then(res => {
+      setProjects(res.data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}, [])
+
   return (
     <ProjectsWrapper>
       <ProjectsArea>
-        <div>Hello from Projects</div>
+      {projects.map(content => (
+          <ProjectsCard key={content._id}>
+            <ProjectsTitle>
+              {content.title}
+            </ProjectsTitle>
+            <ProjectsBody>
+              {content.body}
+            </ProjectsBody>
+            <ProjectsLink>
+              {content.link}
+            </ProjectsLink>
+          </ProjectsCard>
+        ))}
       </ProjectsArea>
     </ProjectsWrapper>
   )

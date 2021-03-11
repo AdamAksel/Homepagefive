@@ -4,7 +4,7 @@ export const FooterWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  height: 2rem;
+  height: 3rem;
   z-index: 100;
 `
 

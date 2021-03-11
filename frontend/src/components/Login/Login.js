@@ -13,7 +13,7 @@ import { admin } from '../../redux/actions'
 import axios from 'axios'
 
 const Login = () => {
-  const access = useSelector(state => state.admin)
+  const access = useSelector((state) => state.admin)
   var [pass, setPass] = useState()
   var [passKey, setPassKey] = useState()
   var [FAQModal, setFAQModal] = useState(false)
@@ -31,10 +31,10 @@ const Login = () => {
   useEffect(() => {
     axios
       .get('/api/FAQ')
-      .then(res => {
+      .then((res) => {
         setFAQ(res.data)
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err)
       })
   }, [])
@@ -55,6 +55,7 @@ const Login = () => {
   function postFAQAnswerHandler(e) {
     setFAQAnswer(e.target.value)
   }
+
   function PostFAQ(e) {
     e.preventDefault()
     const data = {
@@ -64,22 +65,35 @@ const Login = () => {
     axios
       .post('/api/FAQ', data)
       .then()
-      .catch(err => console.log(err))
+      .catch((err) => console.log(err))
   }
+
   function DelFAQ(e) {
     e.preventDefault()
 
     axios
       .delete(`/api/FAQ/${FAQID}`)
       .then()
-      .catch(err => console.log(err))
+      .catch((err) => console.log(err))
   }
 
-  function delFAQIDHandler(e) {
+  function PutFAQ(e) {
+    e.preventDefault()
+    const data = {
+      question: FAQQuestion,
+      answer: FAQAnswer,
+    }
+    axios
+      .put(`/api/FAQ/${FAQID}`, data)
+      .then()
+      .catch((err) => console.log(err))
+  }
+
+  function findIdHandler(e) {
     setFAQID(e.target.value)
   }
 
-  const submitHandler = e => {
+  const submitHandler = (e) => {
     e.preventDefault()
     if (pass === process.env.REACT_APP_KEY) {
       let passNumeral = parseInt(passKey, 10)
@@ -171,7 +185,7 @@ const Login = () => {
       <ModalBackground>
         <ModalArea>
           <ModalLeft>
-            {FAQ.map(qAndA => (
+            {FAQ.map((qAndA) => (
               <ul key={qAndA._id}>
                 <li>
                   ID: {qAndA._id} <br />
@@ -186,8 +200,8 @@ const Login = () => {
             {postModal ? (
               <div>
                 <h4>Post</h4>
-                <TextArea onChange={postFAQQuestionHandler}></TextArea>
-                <TextArea onChange={postFAQAnswerHandler}></TextArea>
+                <TextArea placeholder="Question" onChange={postFAQQuestionHandler}></TextArea>
+                <TextArea placeholder="Answer" onChange={postFAQAnswerHandler}></TextArea>
                 <button type='submit' value='submit' onClick={PostFAQ}>
                   Post
                 </button>
@@ -195,9 +209,19 @@ const Login = () => {
             ) : delModal ? (
               <div>
                 <h4>Del</h4>
-                <TextArea onChange={delFAQIDHandler}></TextArea>
+                <TextArea placeholder="ID" onChange={findIdHandler}></TextArea>
                 <button type='submit' value='submit' onClick={DelFAQ}>
                   Delete
+                </button>
+              </div>
+            ) : putModal ? (
+              <div>
+                <h4>Put</h4>
+                <TextArea placeholder="ID" onChange={findIdHandler}></TextArea>
+                <TextArea placeholder="Question" onChange={postFAQQuestionHandler}></TextArea>
+                <TextArea placeholder="Answer" onChange={postFAQAnswerHandler}></TextArea>
+                <button type='submit' value='submit' onClick={PutFAQ}>
+                  Put
                 </button>
               </div>
             ) : null}
@@ -205,7 +229,7 @@ const Login = () => {
         </ModalArea>
         <button onClick={postScreenHandler}>Post</button>
         <button onClick={putScreenHandler}>Put</button>
-        <button onClick={delScreenHandler}>Del</button>
+        <button onClick={delScreenHandler}>Del</button> 
       </ModalBackground>
     )
   }

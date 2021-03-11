@@ -19,3 +19,37 @@ export const ProjectsArea = styled.div`
   overflow: scroll;
   padding: 50px;
 `
+export const ProjectsCard = styled.div`
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-direction: column;
+border: 1px solid rgba(0,0,0,0.5);
+height: 250px;
+width: 200px;
+`
+
+export const ProjectsTitle = styled.div`
+display: flex;
+justify-content:center;
+width: 140px;
+height: 50px;
+font-size: 30px;
+`
+
+export const ProjectsBody = styled.div`
+display: flex;
+justify-content:center;
+width: 140px;
+height: 120px;
+font-size: 15px;
+
+`
+
+export const ProjectsLink = styled.div`
+display: flex;
+justify-content: center;
+width: 140px;
+height: 20px;
+font-size: 15px;
+`
