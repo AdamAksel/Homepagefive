@@ -26,13 +26,28 @@ const Login = () => {
   var [postModal, setPostModal] = useState(false)
   var [delModal, setDelModal] = useState(false)
   var [putModal, setPutModal] = useState(false)
-  var [FAQID, setFAQID] = useState()
-
+  var [ID, setID] = useState()
+  var [projects, setProjects] = useState()
+  var [projectTitle, setProjectTitle] = useState()
+  var [projectBody, setProjectBody] = useState()
+  var [projectLink, setProjectLink] = useState()
+ 
   useEffect(() => {
     axios
       .get('/api/FAQ')
       .then((res) => {
         setFAQ(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
+
+  useEffect(() => {
+    axios
+      .get('/api/projects')
+      .then((res) => {
+        setProjects(res.data)
       })
       .catch((err) => {
         console.log(err)
@@ -55,6 +70,46 @@ const Login = () => {
   function postFAQAnswerHandler(e) {
     setFAQAnswer(e.target.value)
   }
+  function projectTitleHandler(e){
+    setProjectTitle(e.target.value)
+  }
+  function projectBodyHandler(e){
+    setProjectBody(e.target.value)
+  }
+  function projectLinkHandler(e){
+    setProjectLink(e.target.value)
+  }
+
+  function PostProject(e){
+    e.preventDefault()
+    const data = {
+      title: projectTitle,
+      body: projectBody,
+      link: projectLink,
+    }
+    axios.post("/api/projects", data).then().catch((err) => console.log(err))
+  }
+  function DelProject(e) {
+    e.preventDefault()
+
+    axios
+      .delete(`/api/projects/${ID}`)
+      .then()
+      .catch((err) => console.log(err))
+  }
+  function PutProject(e) {
+    e.preventDefault()
+    const data = {
+      title: projectTitle,
+      body: projectBody,
+      link: projectLink,
+    }
+    axios
+      .put(`/api/FAQ/${ID}`, data)
+      .then()
+      .catch((err) => console.log(err))
+  }
+
 
   function PostFAQ(e) {
     e.preventDefault()
@@ -72,7 +127,7 @@ const Login = () => {
     e.preventDefault()
 
     axios
-      .delete(`/api/FAQ/${FAQID}`)
+      .delete(`/api/FAQ/${ID}`)
       .then()
       .catch((err) => console.log(err))
   }
@@ -84,13 +139,13 @@ const Login = () => {
       answer: FAQAnswer,
     }
     axios
-      .put(`/api/FAQ/${FAQID}`, data)
+      .put(`/api/FAQ/${ID}`, data)
       .then()
       .catch((err) => console.log(err))
   }
 
   function findIdHandler(e) {
-    setFAQID(e.target.value)
+    setID(e.target.value)
   }
 
   const submitHandler = (e) => {
@@ -174,7 +229,7 @@ const Login = () => {
             ) : blogModal ? (
               <button>Blog</button>
             ) : projectsModal ? (
-              <button>Projects</button>
+              <button onClick={modalHandler}>Projects</button>
             ) : null}
           </div>
         </LoginArea>
@@ -232,7 +287,63 @@ const Login = () => {
         <button onClick={delScreenHandler}>Del</button> 
       </ModalBackground>
     )
-  }
+  } else if (modal && projectsModal)
+  {
+    return (
+      <ModalBackground>
+        <ModalArea>
+          <ModalLeft>
+            {projects.map((content) => (
+              <ul key={content._id}>
+                <li>
+                  ID: {content._id} <br />
+                  T: {content.title} <br />
+                  B: {content.body} <br />
+                  L: {content.link} <br />
+                  <br />
+                </li>
+              </ul>
+            ))}
+          </ModalLeft>
+          <ModalRight>
+            {postModal ? (
+              <div>
+                <h4>Post</h4>
+                <TextArea placeholder="Title" onChange={projectTitleHandler}></TextArea>
+                <TextArea placeholder="Body" onChange={projectBodyHandler}></TextArea>
+                <TextArea placeholder="Link" onChange={projectLinkHandler}></TextArea>
+                <button type='submit' value='submit' onClick={PostProject}>
+                  Post
+                </button>
+              </div>
+            ) : delModal ? (
+              <div>
+                <h4>Del</h4>
+                <TextArea placeholder="ID" onChange={findIdHandler}></TextArea>
+                <button type='submit' value='submit' onClick={DelProject}>
+                  Delete
+                </button>
+              </div>
+            ) : putModal ? (
+              <div>
+                <h4>Put</h4>
+                <TextArea placeholder="ID" onChange={findIdHandler}></TextArea>
+                <TextArea placeholder="Title" onChange={projectTitleHandler}></TextArea>
+                <TextArea placeholder="Body" onChange={projectBodyHandler}></TextArea>
+                <TextArea placeholder="Link" onChange={projectLinkHandler}></TextArea>
+                <button type='submit' value='submit' onClick={PutProject}>
+                  Put
+                </button>
+              </div>
+            ) : null}
+          </ModalRight>
+        </ModalArea>
+        <button onClick={postScreenHandler}>Post</button>
+        <button onClick={putScreenHandler}>Put</button>
+        <button onClick={delScreenHandler}>Del</button> 
+      </ModalBackground>
+    )
+}
 }
 
 export default Login
