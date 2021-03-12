@@ -14,7 +14,6 @@ export const MainBackground = styled.div`
   flex-direction: column;
   min-height: 85vh;
   min-width: 100vw;
-  background-color: whitesmoke;
   padding: 50px;
 `
 

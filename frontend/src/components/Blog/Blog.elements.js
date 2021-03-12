@@ -14,7 +14,6 @@ export const BlogArea = styled.div`
   align-content: space-around;
   min-height: 85vh;
   min-width: 100vw;
-  background-color: whitesmoke;
   overflow: scroll;
   padding: 50px;
 `

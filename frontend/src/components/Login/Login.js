@@ -27,10 +27,13 @@ const Login = () => {
   var [delModal, setDelModal] = useState(false)
   var [putModal, setPutModal] = useState(false)
   var [ID, setID] = useState()
-  var [projects, setProjects] = useState()
+  var [projects, setProjects] = useState([])
   var [projectTitle, setProjectTitle] = useState()
   var [projectBody, setProjectBody] = useState()
   var [projectLink, setProjectLink] = useState()
+  var [blogBody, setBlogBody] = useState()
+  var [blogTitle, setBlogTitle] = useState()
+  var [blog, setBlog] = useState([])
  
   useEffect(() => {
     axios
@@ -48,6 +51,17 @@ const Login = () => {
       .get('/api/projects')
       .then((res) => {
         setProjects(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
+
+  useEffect(() => {
+    axios
+      .get('/api/blog')
+      .then((res) => {
+        setBlog(res.data)
       })
       .catch((err) => {
         console.log(err)
@@ -78,6 +92,41 @@ const Login = () => {
   }
   function projectLinkHandler(e){
     setProjectLink(e.target.value)
+  }
+  function blogTitleHandler(e){
+    setBlogTitle(e.target.value)
+  }
+  function blogBodyHandler(e){
+    setBlogBody(e.target.value)
+  }
+
+  function PostBlog(e){
+    e.preventDefault()
+    const data = {
+      title: blogTitle,
+      body: blogBody,
+     
+    }
+    axios.post("/api/blog", data).then().catch((err) => console.log(err))
+  }
+  function DelBlog(e) {
+    e.preventDefault()
+
+    axios
+      .delete(`/api/blog/${ID}`)
+      .then()
+      .catch((err) => console.log(err))
+  }
+  function PutBlog(e) {
+    e.preventDefault()
+    const data = {
+      title: blogTitle,
+      body: blogBody,
+    }
+    axios
+      .put(`/api/blog/${ID}`, data)
+      .then()
+      .catch((err) => console.log(err))
   }
 
   function PostProject(e){
@@ -227,7 +276,7 @@ const Login = () => {
             {FAQModal ? (
               <button onClick={modalHandler}>FAQ</button>
             ) : blogModal ? (
-              <button>Blog</button>
+              <button onClick={modalHandler}>Blog</button>
             ) : projectsModal ? (
               <button onClick={modalHandler}>Projects</button>
             ) : null}
@@ -343,6 +392,59 @@ const Login = () => {
         <button onClick={delScreenHandler}>Del</button> 
       </ModalBackground>
     )
+} else if (modal && blogModal)
+{
+  return (
+    <ModalBackground>
+      <ModalArea>
+        <ModalLeft>
+          {blog.map((content) => (
+            <ul key={content._id}>
+              <li>
+                ID: {content._id} <br />
+                T: {content.title} <br />
+                B: {content.body} <br />
+                <br />
+              </li>
+            </ul>
+          ))}
+        </ModalLeft>
+        <ModalRight>
+          {postModal ? (
+            <div>
+              <h4>Post</h4>
+              <TextArea placeholder="Title" onChange={blogTitleHandler}></TextArea>
+              <TextArea placeholder="Body" onChange={blogBodyHandler}></TextArea>
+              <button type='submit' value='submit' onClick={PostBlog}>
+                Post
+              </button>
+            </div>
+          ) : delModal ? (
+            <div>
+              <h4>Del</h4>
+              <TextArea placeholder="ID" onChange={findIdHandler}></TextArea>
+              <button type='submit' value='submit' onClick={DelBlog}>
+                Delete
+              </button>
+            </div>
+          ) : putModal ? (
+            <div>
+              <h4>Put</h4>
+              <TextArea placeholder="ID" onChange={findIdHandler}></TextArea>
+              <TextArea placeholder="Title" onChange={blogTitleHandler}></TextArea>
+              <TextArea placeholder="Body" onChange={blogBodyHandler}></TextArea>
+              <button type='submit' value='submit' onClick={PutBlog}>
+                Put
+              </button>
+            </div>
+          ) : null}
+        </ModalRight>
+      </ModalArea>
+      <button onClick={postScreenHandler}>Post</button>
+      <button onClick={putScreenHandler}>Put</button>
+      <button onClick={delScreenHandler}>Del</button> 
+    </ModalBackground>
+  )
 }
 }
 
